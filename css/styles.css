@@ -1,0 +1,226 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+  html,
+  body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-text-align);
+    /* background: #f1f1f1; */
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    /**position: relative;*/
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /**grid-template-columns: repeat(4,1fr);*/
+    position: relative;
+  }
+  .row {
+    padding: 1rem;
+  }
+  
+  body {
+    overflow-y: auto;
+    min-height: 100vh;
+  }
+  .text-center {
+    text-align: center;
+    color: var(--bs-body-color);
+  }
+  textarea:focus,
+  .hero-input:focus {
+    width: 200px;
+    outline: none;
+  }
+  .nav-link {
+    margin-right: 36px;
+  }
+  .navbar-nav {
+    position: relative;
+    align-items: right;
+    
+  }
+  
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  .footer {
+    background: #f1f1f1;
+    width: 100%;
+    padding: 16px 5px;
+    color: #999;
+    vertical-align: bottom;
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+    border-radius: 1rem;
+    /* height: 2.5rem; */
+  }
+  
+  .banner {
+    height: 50px;
+    width: 100%;
+    background: white;
+    margin: 20px 0px;
+  }
+  
+  .content {
+    padding: 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  
+  
+  .tile {
+    
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tile img {
+    width: 100%;
+    height: 100%;
+    border-radius:8px;
+    transition: all 0.2s;
+  }
+  .tile img:hover {
+    
+    filter: brightness(50%);
+    transform: scale(1.1);
+  }
+  
+  
+  .tile-text {
+    position: relative;
+    bottom: 60px;
+    z-index: 1;
+    color: #bbf7d0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transform: translate(8%, 8%);
+  }
+  
+  .hero-image {
+   
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../assets/hero.jpg");
+    height: 20rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+  }
+  
+  .hero-heading {
+    color: aliceblue;
+    text-align: center;
+  }
+
+  .hero-subheading {
+    font-size: 24px;
+    font-weight: 100;
+    color: aliceblue;
+    text-align: center;
+  }
+  
+  .hero-input {
+    width: 80%;
+    height: 50px;
+    float: center;
+    margin: 2rem 9rem;
+    border-radius: 8px;
+    border: none;
+  }
+  
+  .nav-link {
+    margin-right: 36px;
+  }
+  
+  
+  
+  .adventure-card {
+    height: 95%;
+    border-radius: 8px;
+  }
+  .adventure-card img {
+    width: 100%;
+    height: 83%;
+    object-fit: cover;
+    transition: 0.2s all;
+  }
+  .adventure-card img:hover {
+    
+  
+    opacity: 0.3;
+    filter: grayscale(50%);
+    /**filter:brightness(50%)*/
+  }
+  
+  
+  
+  .adventure-detail-card {
+   
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 16px;
+  }
+  
+  .adventure-card-image {
+   
+    width: 100%;
+    height: 100%;
+  }
+  
+  .adventure-card-image :hover {
+  
+    filter: grayscale(50%);
+    filter: brightness(50%);
+  }
+  
+  .experience-content ul li {
+    margin-left: 16px;
+    padding: 0;
+  }
+  
+  @media only screen and (min-width: 300px) and (max-width: 760px) {
+    /* For desktops phones: */
+    #reservation {
+      width: 400px;
+      position: fixed;
+      bottom: 0;
+      background-color: white;
+      box-shadow: 3px 3px 4px rgba(125, 135, 146, 1);
+    }
+    #content-section {
+      margin-bottom: 100px;
+    }
+  }
+  
+  @media only screen and (min-width: 760px) {
+    #reservation {
+      width: 400px;
+      position: fixed;
+      right: 0;
+      margin-top: 1.5%;
+      margin-right: 2.5%;
+    }
+  }
+  
+  
