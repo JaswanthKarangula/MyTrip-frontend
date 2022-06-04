@@ -62,111 +62,12 @@
       </div>
     </div>
 
+    
     <div class="container">
-        <div class="content">
-          <!-- TODO: MODULE_LAYOUT -->
-          <!-- 1. Create the grid like layout as required. -->
-          <div class="row">
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/bengaluru.jpg" alt="Bengaluru" />
-                  <div class="tile-text text-center">
-                    <h5>Bengaluru</h5>
-                    <p>100+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/dubai.jpg" alt="Dubai" />
-                  <div class="tile-text text-center">
-                    <h5>Dubai</h5>
-                    <p>200+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/goa.jpg" alt="Goa" />
-                  <div class="tile-text text-center">
-                    <h5>Goa</h5>
-                    <p>300+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/kolkata.jpg" alt="Kolkata" />
-                  <div class="tile-text text-center">
-                    <h5>Kolkata</h5>
-                    <p>400+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/malaysia.jpg" alt="Malaysia" />
-                  <div class="tile-text text-center">
-                    <h5>Malaysia</h5>
-                    <p>500+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/mumbai.jpg" alt="Mumbai" />
-                  <div class="tile-text text-center">
-                    <h5>Mumbai</h5>
-                    <p>600+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/paris.jpg" alt="Paris" />
-                  <div class="tile-text text-center">
-                    <h5>Paris</h5>
-                    <p>700+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-            <div class="col-12 col-sm-6 col-lg-3 mb-4">
-              <a href="pages/adventures/">
-                <div class="tile">
-                  <img src="assets/singapore.jpg" alt="Singapore" />
-                  <div class="tile-text text-center">
-                    <h5>Singapore</h5>
-                    <p>700+ place</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-    </div>
+      <div class="content text-white">
+          <div class="row" id="data"></div>
+      </div>
+  </div>
   
 
     <footer>
@@ -184,5 +85,18 @@
       integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
       crossorigin="anonymous"
     ></script>
+
+
+    <script type="module">
+      import { init } from "./modules/landing_page.js";
+
+      //entry point (executed when DOM is loaded)
+      (async function () {
+          init();
+  })();
+  </script>
+
   </body>
+
+
 </html>
