@@ -198,6 +198,17 @@
     margin-left: 16px;
     padding: 0;
   }
+
+  .filter-bar {
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 20px 0px;
+  }
+
+  .filter-bar-tile {
+    border-right: 1px solid #999;
+    padding: 0px 20px;
+  }
   
   @media only screen and (min-width: 300px) and (max-width: 760px) {
     /* For desktops phones: */
