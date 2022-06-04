@@ -37,14 +37,14 @@ function addAdventureToDOM(adventures) {
 function getAdventureCard(adventureCard){
 
     let adventureTile = document.createElement('div');
-    adventureTile.className = "col-6 col-sm-6 col-lg-3 mb-4 position-relative";
+    adventureTile.className = "col-6 col-sm-6 col-lg-3 mb-3 position-relative";
 
 
     let adventureBlock = document.createElement('div');
     adventureBlock.className = "adventure-card";
 
     let linkElement = document.createElement('a');
-    linkElement.href = `resort/`;
+    linkElement.href = `resort/?adventure=${adventureCard.id}`;
 
     let adventureImage = document.createElement('img');
     adventureImage.src = adventureCard.image;
@@ -53,13 +53,13 @@ function getAdventureCard(adventureCard){
 
 
     let adventureInfoElement = document.createElement('div');
-    adventureInfoElement.className = "d-flex justify-content-between text-center w-100";
+    adventureInfoElement.className = "d-flex justify-content-between  w-100 px-1";
     
     let adventureHeading = document.createElement('h5');
-    adventureHeading.className = "card-title";
+   // adventureHeading.className = "card-title";
     adventureHeading.textContent = adventureCard.name;
     let costPerHead = document.createElement('p');
-    costPerHead.className = "card-text";
+   // costPerHead.className = "card-text";
     costPerHead.textContent = `₹${adventureCard.costPerHead}`;
     let durationHeading = document.createElement('h5');
     durationHeading.textContent= "Duration";
@@ -72,7 +72,7 @@ function getAdventureCard(adventureCard){
     adventureInfoElement.appendChild(costPerHead);
 
     let adventureDurationElement = document.createElement('div');
-    adventureDurationElement.className="d-flex justify-content-between text-center w-100";
+    adventureDurationElement.className="d-flex justify-content-between text-center w-100 px-1";
 
     adventureDurationElement.appendChild(durationHeading);
     adventureDurationElement.appendChild(adventureDuration);

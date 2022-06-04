@@ -29,6 +29,13 @@
     padding: 1rem;
   }
   
+  .content {
+    padding: 100px 0px;
+    margin: 0px 50px;
+    /* display: flex;
+    flex-wrap: wrap; */
+  }
+
   body {
     overflow-y: auto;
     min-height: 100vh;
@@ -198,7 +205,7 @@
   
   .adventure-card-image {
    
-    height: 500px;
+    height: 800px;
   width: 100%;
   cursor: pointer;
   -webkit-transition: 0.2s all;
