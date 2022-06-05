@@ -92,6 +92,14 @@
 
         </div>
 
+        <div class="mt-2" id="category-section">
+
+          <div class="d-flex align-items-center" id="category-list">
+            <!-- TODO:: add categories; -->
+          </div>
+
+        </div>
+
 
 
 
@@ -266,118 +274,120 @@
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
     crossorigin="anonymous"></script>
 
-    <script type="module">
-      import {
-          getCityFromURL,
-          fetchAdventures,
-          addAdventureToDOM,
-          filterByDuration,
-          filterByCategory,
-          filterFunction,
-          saveFiltersToLocalStorage,
-          getFiltersFromLocalStorage,
-          generateFilterPillsAndUpdateDOM
-      } from "../../modules/adventures_page.js";
+  <script type="module">
+    import {
+      getCityFromURL,
+      fetchAdventures,
+      addAdventureToDOM,
+      filterByDuration,
+      filterByCategory,
+      filterFunction,
+      saveFiltersToLocalStorage,
+      getFiltersFromLocalStorage,
+      generateFilterPillsAndUpdateDOM
+    } from "../../modules/adventures_page.js";
 
-      // Declaring global variable adventure
-      let adventures;
+    // Declaring global variable adventure
+    let adventures;
 
-      //Checks if filters are available in local storage and sets the value accordingly
-      // The structure of "filters" object is { duration : "6-10", category : [] }, which basically means duration is single-value filter and category is multi-value filter
+    //Checks if filters are available in local storage and sets the value accordingly
+    // The structure of "filters" object is { duration : "6-10", category : [] }, which basically means duration is single-value filter and category is multi-value filter
 
-      let filters =
-          getFiltersFromLocalStorage() !== null
-              ? getFiltersFromLocalStorage()
-              : { duration: "", category: [] };
+    let filters =
+      getFiltersFromLocalStorage() !== null
+        ? getFiltersFromLocalStorage()
+        : { duration: "", category: [] };
 
-      console.log(filters);
-      
-      //entry point (executed when DOM is loaded)
-      (async function () {
+    console.log(filters);
 
-          /* 
-           * Fetches the City from URL query param 
-           * window.location.search is an in-built browser property that 
-           * returns the query param from URL, 
-           * example: http://localhost:8081/?city=bengaluru => window.location.search would return "?city=bengaluru"
-           */
-          let city = getCityFromURL(window.location.search);
+    //entry point (executed when DOM is loaded)
+    (async function () {
 
-          //Fetches the adventures for the particular city
-          adventures = await fetchAdventures(city);
+      /* 
+       * Fetches the City from URL query param 
+       * window.location.search is an in-built browser property that 
+       * returns the query param from URL, 
+       * example: http://localhost:8081/?city=bengaluru => window.location.search would return "?city=bengaluru"
+       */
+      let city = getCityFromURL(window.location.search);
 
-          //Applies filters on the adventures list
-          let filteredAdventures = filterFunction(adventures, filters);
+      //Fetches the adventures for the particular city
+      adventures = await fetchAdventures(city);
 
-          //Updates the filtered adventures list to the DOM
-          addAdventureToDOM(filteredAdventures)
+      //Applies filters on the adventures list
+      let filteredAdventures = filterFunction(adventures, filters);
 
-          // Updates the DOM with filter pills if any
-          generateFilterPillsAndUpdateDOM(filters);
-      })();
+      //Updates the filtered adventures list to the DOM
+      addAdventureToDOM(filteredAdventures)
 
-
-      //executed when onChange() is triggered on duration filter dropdown
-      function selectDuration(event) {
-          // TODO: MODULE_FILTERS
-          // 1. Change the DOM to show the selected duration filter. Use the provided input event
-          // 2. Invoke saveFiltersToLocalStorage here
-
-      }
-
-      //executed when clear button is clicked on duration filter dropdown
-      function clearDuration(event) {
-          // TODO: MODULE_FILTERS
-          // 1. Change the DOM to clear the Duration filter. Refer clearCategory() below
-          // 2. Invoke saveFiltersToLocalStorage here
-
-      }
+      // Updates the DOM with filter pills if any
+      generateFilterPillsAndUpdateDOM(filters);
+    })();
 
 
 
-      //executed when onChange() is triggered on category filter dropdown
-      function selectCategory(event) {
-          document.getElementById("data").textContent = "";
-          document.getElementById("category-list").textContent = "";
-
-          let category = event.target.value;
-          document.getElementById("category-select").selectedIndex = 0;
-
-          filters["category"].push(category);
-          filters["category"] = filters["category"].filter(onlyUnique);
+    function selectDuration(event) {
+      let timePeriod = event.target.value;
+      document.getElementById("data").textContent = "";
+      filters['duration'] = timePeriod;
+      let filteredAdventures = filterFunction(adventures, filters);
+      addAdventureToDOM(filteredAdventures);
+      saveFiltersToLocalStorage(filters);
+    }
 
 
-          generateFilterPillsAndUpdateDOM(filters);
-          let filteredAdventures = filterFunction(adventures, filters);
-          addAdventureToDOM(filteredAdventures);
+    function clearDuration(event) {
+      document.getElementById("data").textContent = "";
+      document.getElementById("duration-select").selectedIndex = 0;
+      filters['duration'] = "";
+      let filteredAdventures = filterFunction(adventures, filters);
+      addAdventureToDOM(filteredAdventures);
+      saveFiltersToLocalStorage(filters);
 
-          // TODO: MODULE_FILTERS
-          // 1. Invoke saveFiltersToLocalStorage here
-      }
+    }
 
-      //executed when clear button is clicked on category filter dropdown
-      function clearCategory(event) {
-          document.getElementById("data").textContent = "";
-          document.getElementById("category-list").textContent = "";
 
-          filters["category"] = [];
-          let filteredAdventures = filterFunction(adventures, filters);
-          addAdventureToDOM(filteredAdventures);
 
-          // TODO: MODULE_FILTERS
-          // 1. Invoke saveFiltersToLocalStorage here
-      }
 
-      //helper function
-      function onlyUnique(value, index, self) {
-          return self.indexOf(value) === index;
-      }
+    function selectCategory(event) {
+      document.getElementById("data").textContent = "";
+      document.getElementById("category-list").textContent = "";
 
-      //registering module based functions in the DOM in order for them to work
-      window.selectDuration = selectDuration;
-      window.selectCategory = selectCategory;
-      window.clearDuration = clearDuration;
-      window.clearCategory = clearCategory;
+      let category = event.target.value;
+      document.getElementById("category-select").selectedIndex = 0;
+
+      filters["category"].push(category);
+      filters["category"] = filters["category"].filter(onlyUnique);
+
+
+      generateFilterPillsAndUpdateDOM(filters);
+      let filteredAdventures = filterFunction(adventures, filters);
+      addAdventureToDOM(filteredAdventures);
+      saveFiltersToLocalStorage(filters);
+
+    }
+
+
+    function clearCategory(event) {
+      document.getElementById("data").textContent = "";
+      document.getElementById("category-list").textContent = "";
+
+      filters["category"] = [];
+      let filteredAdventures = filterFunction(adventures, filters);
+      addAdventureToDOM(filteredAdventures);
+      saveFiltersToLocalStorage(filters);
+    }
+
+    //helper function
+    function onlyUnique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
+    //registering module based functions in the DOM in order for them to work
+    window.selectDuration = selectDuration;
+    window.selectCategory = selectCategory;
+    window.clearDuration = clearDuration;
+    window.clearCategory = clearCategory;
   </script>
 
 </body>

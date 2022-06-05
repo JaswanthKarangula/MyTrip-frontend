@@ -12,7 +12,6 @@ async function fetchAdventures(city) {
     try{
         let response = await fetch(config.backendEndpoint+`/adventures?city=${city}`);
         let adventuresJson = await response.json();
-        //  console.log(adventuresJson);
         return adventuresJson;
     }
     catch(err) {
@@ -24,9 +23,10 @@ async function fetchAdventures(city) {
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
 
+  console.log(adventures);
+
     let data = document.getElementById('data');
     adventures.forEach(element => {
-        console.log();
         data.appendChild(getAdventureCard(element));
     });
     // for(let loc in adventures){
@@ -96,7 +96,12 @@ function getAdventureCard(adventureCard){
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
 function filterByDuration(list, low, high) {
-  return list;
+  let filteredList = [];
+  list.forEach(element => {
+    let duration = parseInt(element.duration)
+    if(duration>=low && duration<=high )filteredList.push(element);
+  });
+  return filteredList;
 }
 
 
@@ -104,19 +109,54 @@ function filterByDuration(list, low, high) {
 
 //Implementation of filtering by category which takes in a list of adventures, list of categories to be filtered upon and returns a filtered list of adventures.
 function filterByCategory(list, categoryList) {
-  return list;
+  let filteredList = [];
+  list.forEach(element =>{
+    if(categoryList.includes(element.category)){
+      filteredList.push(element)
+    }
+  });
+  return filteredList;
 
 }
 
 // filters object looks like this filters = { duration: "", category: [] };
 
 function filterFunction(list, filters) {
+  let durationFilters = filters['duration'];
+  let categoryFilters = filters['category'];
+
+  let filteredList =[];
+
+  if(durationFilters != "" && categoryFilters.length >0 ){
+
+    let tempFilteredList = filterByCategory(list,categoryFilters);
+    let low = parseInt(durationFilters.split("-")[0]);
+    let high = parseInt(durationFilters.split("-")[1]);
+    filteredList = filterByDuration(tempFilteredList,low,high);
+    return filteredList;
+
+  }
+  else if ( durationFilters !=""){
+
+    let low = parseInt(durationFilters.split("-")[0]);
+    let high = parseInt(durationFilters.split("-")[1]);
+    filteredList = filterByDuration(list,low,high);
+    return filteredList;
+
+  }
+  else if(categoryFilters.length>0){
+    return filterByCategory(list,categoryFilters);
+  }
+  else{
   return list;
+  }
+
 }
 
 //Implementation of localStorage API to save filters to local storage. This should get called everytime an onChange() happens in either of filter dropdowns
 function saveFiltersToLocalStorage(filters) {
-  
+  let filter = JSON.stringify(filters);
+  localStorage.setItem("filters",filter)
 }
 
 //Implementation of localStorage API to get filters from local storage. This should get called whenever the DOM is loaded.
@@ -131,6 +171,18 @@ function getFiltersFromLocalStorage() {
 
 function generateFilterPillsAndUpdateDOM(filters) {
 
+  const categoryListDOMElement = document.getElementById("category-list");
+  const categoryList = filters.category;
+  categoryList.forEach(category => {
+    const categoryDOMElement = document.createElement("div");
+    categoryDOMElement.className = "mx-2 px-2 border border-warning";
+    categoryDOMElement.style.borderRadius = "20px";
+    categoryDOMElement.innerHTML = `
+      ${category}
+    `;
+    categoryListDOMElement.append(categoryDOMElement);
+  });
+  
 }
 
 

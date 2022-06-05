@@ -54,9 +54,10 @@ function addCityToDOM(id, city, description, image) {
 
 
 
-
     let link = document.createElement('a');
-    link.href = `pages/adventures?city=${id}&id=${id}`;
+    link.href = `pages/adventures/?city=${id}`;
+    link.id = id;
+     console.log(link.href);
 
     link.appendChild(tileDiv);
     dataDiv.appendChild(link);
