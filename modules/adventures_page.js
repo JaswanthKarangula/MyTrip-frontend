@@ -44,7 +44,7 @@ function getAdventureCard(adventureCard){
     adventureBlock.className = "adventure-card";
 
     let linkElement = document.createElement('a');
-    linkElement.href = `resort/?adventure=${adventureCard.id}`;
+    linkElement.href = `details/?adventure=${adventureCard.id}`;
 
     let adventureImage = document.createElement('img');
     adventureImage.src = adventureCard.image;
@@ -182,7 +182,7 @@ function generateFilterPillsAndUpdateDOM(filters) {
     `;
     categoryListDOMElement.append(categoryDOMElement);
   });
-  
+
 }
 
 
