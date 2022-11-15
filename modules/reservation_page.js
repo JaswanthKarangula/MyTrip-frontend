@@ -14,6 +14,8 @@ async function fetchReservations() {
 }
 
 
+
+
 function addReservationToTable(reservations) {
   
   if(reservations.length > 0){
